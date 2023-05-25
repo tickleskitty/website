@@ -4,6 +4,18 @@
   <title>My Website</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
+  <style>
+    .hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -23,18 +35,18 @@
       <p>This is the homepage of my website. Feel free to explore!</p>
     </section>
 
-    <section>
+    <section id="features">
       <h2>Featured Content</h2>
       <div class="featured-content">
-        <div class="featured-item">
+        <div class="featured-item hidden">
           <h3>Service 1</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
-        <div class="featured-item">
+        <div class="featured-item hidden">
           <h3>Service 2</h3>
           <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
         </div>
-        <div class="featured-item">
+        <div class="featured-item hidden">
           <h3>Service 3</h3>
           <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.</p>
         </div>
@@ -45,5 +57,28 @@
   <footer>
     <p>&copy; 2023 My Website. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var featuresSection = document.getElementById('features');
+      var features = featuresSection.querySelectorAll('.featured-item');
+
+      function checkScroll() {
+        var triggerBottom = window.innerHeight * 0.9;
+
+        features.forEach(function(feature) {
+          var featureTop = feature.getBoundingClientRect().top;
+
+          if (featureTop < triggerBottom) {
+            feature.classList.add('visible');
+            feature.classList.remove('hidden');
+          }
+        });
+      }
+
+      checkScroll();
+      window.addEventListener('scroll', checkScroll);
+    });
+  </script>
 </body>
 </html>
