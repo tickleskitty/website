@@ -59,27 +59,5 @@
     <p>&copy; 2023 My Website. All rights reserved.</p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var featuresSection = document.getElementById('features');
-      var features = featuresSection.querySelectorAll('.featured-item');
-
-      function checkScroll() {
-        var triggerBottom = window.innerHeight * 0.9;
-
-        features.forEach(function(feature) {
-          var featureTop = feature.getBoundingClientRect().top;
-
-          if (featureTop < triggerBottom) {
-            feature.classList.add('visible');
-            feature.classList.remove('hidden');
-          }
-        });
-      }
-
-      checkScroll();
-      window.addEventListener('scroll', checkScroll);
-    });
-  </script>
 </body>
 </html>
